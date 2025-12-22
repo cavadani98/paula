@@ -1,9 +1,12 @@
 name: Page Watcher
 
+permissions:
+  contents: write   # necesario para poder hacer commit del txt
+
 on:
   schedule:
-    - cron: '* * * * *'
-  workflow_dispatch:
+    - cron: '* * * * *'  # cada minuto
+  workflow_dispatch:      # permite lanzar manualmente
 
 jobs:
   check:
