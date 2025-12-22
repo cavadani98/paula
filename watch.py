@@ -2,7 +2,7 @@ import requests
 import hashlib
 import os
 
-URL = "https://www.google.com/"
+URL = "https://empleopublico.carm.es/web/pagina?IDCONTENIDO=2340&IDTIPO=200&CODIGO_CUERPO=AIA00&CODIGO_CONVOCATORIA=AIA00L22&TIPO_ACCESO=L&RASTRO=c$m61986,62006"
 
 HASH_FILE = "last_hash.txt"
 
