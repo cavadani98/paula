@@ -1,0 +1,36 @@
+name: Page Watcher
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run watcher
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: python watch_page.py
+
+      - name: Save hash
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add last_hash.txt
+          git diff --cached --quiet || git commit -m "Update page hash"
+          git push
