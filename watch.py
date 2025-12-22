@@ -2,7 +2,7 @@ import requests
 import hashlib
 import os
 
-URL = "https://www.marca.com/"
+URL = "https://www.google.com/"
 HASH_FILE = "last_hash.txt"
 
 def get_page_hash():
