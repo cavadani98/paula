@@ -2,7 +2,7 @@ name: Page Watcher
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '* * * * *'
   workflow_dispatch:
 
 jobs:
