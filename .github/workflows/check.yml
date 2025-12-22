@@ -28,7 +28,7 @@ jobs:
         env:
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
-        run: python watch_page.py
+        run: python watch.py
 
       - name: Save hash
         run: |
