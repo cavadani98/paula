@@ -19,18 +19,23 @@ def send_telegram(msg):
 def main():
     new_hash = get_page_hash()
 
+    # Primera ejecución
     if not os.path.exists(HASH_FILE):
         with open(HASH_FILE, "w") as f:
             f.write(new_hash)
+        send_telegram("🆕 Estado inicial guardado. Aún no hay comparación.")
         return
 
     with open(HASH_FILE) as f:
         old_hash = f.read()
 
     if new_hash != old_hash:
-        send_telegram(f"⚠️ La página ha cambiado:\n{URL}")
+        send_telegram(f"⚠️ CAMBIO DETECTADO\n{URL}")
         with open(HASH_FILE, "w") as f:
             f.write(new_hash)
+    else:
+        send_telegram(f"✅ Sin cambios\n{URL}")
+
 
 if __name__ == "__main__":
     main()
