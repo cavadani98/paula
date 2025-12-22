@@ -1,0 +1,36 @@
+import requests
+import hashlib
+import os
+
+URL = "https://www.marca.com/"
+HASH_FILE = "last_hash.txt"
+
+def get_page_hash():
+    r = requests.get(URL, timeout=10)
+    r.raise_for_status()
+    return hashlib.sha256(r.text.encode()).hexdigest()
+
+def send_telegram(msg):
+    token = os.environ["TG_TOKEN"]
+    chat_id = os.environ["TG_CHAT_ID"]
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    requests.post(url, data={"chat_id": chat_id, "text": msg})
+
+def main():
+    new_hash = get_page_hash()
+
+    if not os.path.exists(HASH_FILE):
+        with open(HASH_FILE, "w") as f:
+            f.write(new_hash)
+        return
+
+    with open(HASH_FILE) as f:
+        old_hash = f.read()
+
+    if new_hash != old_hash:
+        send_telegram(f"⚠️ La página ha cambiado:\n{URL}")
+        with open(HASH_FILE, "w") as f:
+            f.write(new_hash)
+
+if __name__ == "__main__":
+    main()
