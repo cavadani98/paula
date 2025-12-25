@@ -35,7 +35,7 @@ def main():
         with open(HASH_FILE, "w") as f:
             f.write(new_hash)
     else:
-        send_telegram(f"✅ Sin cambios\n{URL}")
+        send_telegram(f"✅ Sin cambios")
 
 
 if __name__ == "__main__":
