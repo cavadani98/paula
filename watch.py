@@ -2,7 +2,8 @@ import requests
 import hashlib
 import os
 
-URL = "https://empleopublico.carm.es/web/pagina?IDCONTENIDO=2340&IDTIPO=200&CODIGO_CUERPO=AIA00&CODIGO_CONVOCATORIA=AIA00L22&TIPO_ACCESO=L&RASTRO=c$m61986,62006"
+#URL = "https://empleopublico.carm.es/web/pagina?IDCONTENIDO=2340&IDTIPO=200&CODIGO_CUERPO=AIA00&CODIGO_CONVOCATORIA=AIA00L22&TIPO_ACCESO=L&RASTRO=c$m61986,62006"
+URL = "https://www.carm.es/web/pagina?organismo=&tipocontrato=&tipoanuncio=&anualidad=&IDCONTENIDO=1614&IDTIPO=200&RASTRO=c709%24m&res_inferior=&res_superior=&regtotales=&x=51&y=15"
 
 HASH_FILE = "last_hash.txt"
 
